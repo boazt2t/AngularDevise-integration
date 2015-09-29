@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'angularjs-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'angular_rails_csrf'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -43,5 +47,10 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
+end
+
+group :production do
+	gem 'rails_12factor'
 end
 
