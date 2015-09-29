@@ -2,6 +2,7 @@ angular.module('myModule', ['Devise']).
     config(function(AuthProvider) {
         // Configure Auth service with AuthProvider
     }).
-    controller('myCtrl', function(Auth) {
+    controller('welCtrl', function(Auth, $scope) {
         // Use your configured Auth service.
+        $scope.owner = "Bill"
     });
