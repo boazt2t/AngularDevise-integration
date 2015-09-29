@@ -1,17 +1,4 @@
-Skip to content
-This repository  
-Search
-Pull requests
-Issues
-Gist
- @boazt2t
- Watch 36
-  Star 308
-  Fork 56 cloudspace/angular_devise
-Branch: master  angular_devise/lib/devise.js
-@jridgewelljridgewell on Jun 3 Bump version to v1.1
-3 contributors @jridgewell @AmirKarimi @mjrk
-RawBlameHistory    310 lines (281 sloc)  10.4 KB
+
 (function(angular) {
     'use strict';
     var devise = angular.module('Devise', []);
@@ -321,5 +308,3 @@ RawBlameHistory    310 lines (281 sloc)  10.4 KB
 });
 
 })(angular);
-Status API Training Shop Blog About Pricing
-© 2015 GitHub, Inc. Terms Privacy Security Contact Help
