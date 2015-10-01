@@ -14,5 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
+//= require angular-route
 //= require angular-devise/devise
 //= require angular/main
+//= require bootstrap-sprockets
+//= require bootstrap
+//= require angular/signInCtrl
+
