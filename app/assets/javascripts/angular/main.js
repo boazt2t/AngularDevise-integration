@@ -13,10 +13,6 @@ Blog.config(['$routeProvider',
           templateUrl: '../assets/sign_in.html',
           controller: 'signInCtrl'
         })
-        .when('/sign_out', {
-          templateUrl: '../assets/welcome.html',
-          controller: 'signOutCtrl'
-        })
         .when('/portfolio', {
           templateUrl: '../assets/portfolio.html',
           controller: 'portfolioCtrl'
