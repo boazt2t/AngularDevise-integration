@@ -20,4 +20,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require angular/signInCtrl
+//= require angular/portfolioCtrl
+//= require angular/welCtrl
 
