@@ -30,7 +30,7 @@ Blog.config(['$routeProvider',
   
 
 
-Blog.directive('showErrors', function ($timeout, showErrorsConfig) {
+Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout, showErrorsConfig) {
       var getShowSuccess, linkFn;
       
       getShowSuccess = function (options) {
@@ -106,7 +106,7 @@ Blog.directive('showErrors', function ($timeout, showErrorsConfig) {
         }
       };
     }
-  );
+  ]);
   
   Blog.provider('showErrorsConfig', function () {
     var _showSuccess;
