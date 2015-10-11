@@ -1,10 +1,10 @@
 
 Blog = angular.module('myModule', ['ngRoute', 'Devise']);
 
-Blog.run(function($rootScope){
+Blog.run(['$rootScope', function($rootScope){
     $rootScope.currentUser = null;
     $rootScope.notifyMsg = null;
-});
+}]);
 
 Blog.config(['$routeProvider',
     function($routeProvider) {
