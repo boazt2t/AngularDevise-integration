@@ -60,7 +60,7 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
           return toggleClasses(formCtrl[inputName].$invalid);
         });
 
-        scope.$watch(function () {
+        /*scope.$watch(function () {
           return formCtrl[inputName] && formCtrl[inputName].$invalid;
         }, function (invalid) {
           if (!blurred) {
@@ -68,7 +68,7 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
           }
           return toggleClasses(invalid);
         });
-
+*/
         scope.$on('show-errors-check-validity', function () {
             if (!angular.isUndefined(scope.err)) {
                 if (inputName == 'email' && !angular.isUndefined(scope.err.email)) return toggleClasses(true);

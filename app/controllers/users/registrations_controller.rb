@@ -42,7 +42,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      puts('==================15==================')
       u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :phone_number)
     end
   end
@@ -53,10 +52,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
-  def after_sign_up_path_for()
-    puts('==================after_sign_up_path_for==================')
-    root_path
-  end
+  # def after_sign_up_path_for()
+    
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

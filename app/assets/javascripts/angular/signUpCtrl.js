@@ -102,6 +102,13 @@ Blog.controller('signUpCtrl', ['Auth', '$scope', '$location', '$rootScope',
 		
 
 		$scope.signUp = function() {
+			if ($scope.registerData.password != $scope.registerData.password_confirmation) {
+				$scope.err = {
+					password_confirmation: ["doesn't match Password"]
+				};
+				
+				$scope.registerForm.$invalid = true;
+			}
 
 			$scope.$broadcast('show-errors-check-validity');
 			if ($scope.registerForm.$invalid)  return; 
