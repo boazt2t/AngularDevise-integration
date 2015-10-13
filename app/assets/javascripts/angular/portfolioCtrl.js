@@ -19,6 +19,8 @@ Blog.controller('portfolioCtrl', ['Auth', '$scope', '$location', '$rootScope',
               $console.log("logout error");
           });
         }
+
+        $rootScope.notifyMsg = "";
   }
 ]);
 

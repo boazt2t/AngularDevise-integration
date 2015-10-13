@@ -1,4 +1,4 @@
-Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope',
+Blog.controller('changeAccountCtrl', ['Auth', '$scope', '$location', '$rootScope',
 	function(Auth, $scope, $location, $rootScope) {
         // Use your configured Auth service.
 

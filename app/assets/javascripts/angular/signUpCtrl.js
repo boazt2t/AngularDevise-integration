@@ -94,6 +94,7 @@ Blog.controller('signUpCtrl', ['Auth', '$scope', '$location', '$rootScope',
 			};
 		}*/
 
+    $rootScope.notifyMsg = "";
 		$scope.registerData = {
 		    email: '',
 		    password: '',
