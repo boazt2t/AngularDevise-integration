@@ -21,6 +21,10 @@ Blog.config(['$routeProvider',
           templateUrl: '../assets/portfolio.html',
           controller: 'portfolioCtrl'
         })
+        .when('/edit/password', {
+          templateUrl: '../assets/change_password.html',
+          controller: 'changePwdCtrl'
+        })
         .otherwise({
         	templateUrl: '../assets/welcome.html',
         	controller: 'welCtrl'

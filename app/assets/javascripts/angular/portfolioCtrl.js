@@ -1,7 +1,30 @@
 Blog.controller('portfolioCtrl', ['Auth', '$scope', '$location', '$rootScope',
 	function(Auth, $scope, $location, $rootScope) {
         // Use your configured Auth service.
-        
+        var config = {
+            headers: {
+                'X-HTTP-Method-Override': 'POST'
+            }
+        };
+
+        $scope.signOut = function() {
+            Auth.logout(config).then(function(oldUser) {
+                // alert(oldUser.name + "you're signed out now.");
+                $rootScope.notifyMsg = "Successfully logged out";
+                $location.path("/");
+            }, function(error) {
+                // An error occurred logging out.
+            });
+        }
+
+
+        $scope.$on('devise:login', function(event, currentUser) {
+            // after a login, a hard refresh, a new tab
+        });
+
+        $scope.$on('devise:new-session', function(event, currentUser) {
+            // user logged in by Auth.login({...})
+        });
 	}
 ]);
 
