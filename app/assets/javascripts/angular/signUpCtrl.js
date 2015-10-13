@@ -121,7 +121,7 @@ Blog.controller('signUpCtrl', ['Auth', '$scope', '$location', '$rootScope',
 			Auth.register($scope.registerData, config).then(function(registeredUser) {
 			    console.log(registeredUser); // => {id: 1, ect: '...'}
 			    $rootScope.currentUser = registeredUser;
-			    $location = "/sign_in";
+			    $location.path("/sign_in");
 			    //$rootScope.notifyMsg = "you have to confirm your account by email";
 			}, function(error) {
 			    // Registration failed...

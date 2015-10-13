@@ -78,6 +78,7 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
                 if (inputName == 'email' && !angular.isUndefined(scope.err.email)) return toggleClasses(true);
                 if (inputName == 'password' && !angular.isUndefined(scope.err.password)) return toggleClasses(true);
                 if (inputName == 'password_confirmation' && !angular.isUndefined(scope.err.password_confirmation)) return toggleClasses(true);
+                if (inputName == 'current_password' && !angular.isUndefined(scope.err.current_password)) return toggleClasses(true);
             }
                 
             return toggleClasses(formCtrl[inputName].$invalid);

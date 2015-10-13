@@ -21,6 +21,7 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
 	            //console.log(user); // => {id: 1, ect: '...'}
 	            $location.path("/portfolio");
               $rootScope.currentUser = user;
+              console.log($rootScope.currentUser);
               $rootScope.notifyMsg = "Successfully signed in user";
 	            //alert("Successfully signed in user");
 	        }, function(error) {

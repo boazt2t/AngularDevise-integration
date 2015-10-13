@@ -279,7 +279,7 @@
             */
             update: function(creds, config) {
                 creds = creds || {};
-                return $http(httpConfig('register', creds, config))
+                return $http(httpConfig('update', creds, config))
                     .then(service.parse)
                     .then(save)
                     .then(broadcast('update-info'));
