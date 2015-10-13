@@ -13,6 +13,10 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
         };
 
         $scope.signIn = function() {
+          
+          $scope.$broadcast('show-errors-check-validity');
+          if ($scope.loginForm.$invalid)  return; 
+
 	        Auth.login($scope.loginData, config).then(function(user) {
 	            //console.log(user); // => {id: 1, ect: '...'}
 	            $location.path("/portfolio");
@@ -21,9 +25,9 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
 	            //alert("Successfully signed in user");
 	        }, function(error) {
 	            // Authentication failed...
-	          console.info('Error in authenticating user!');
-	          alert('Error in signing in user!');
             console.log(error);
+            $scope.err = error.data.errors;
+            $scope.$broadcast('show-errors-check-validity');
 	        });
         }
 

@@ -1,40 +1,4 @@
-
-Blog = angular.module('myModule', ['ngRoute', 'Devise']);
-
-Blog.run(['$rootScope', function($rootScope){
-    $rootScope.currentUser = null;
-    $rootScope.notifyMsg = null;
-}]);
-
-Blog.config(['$routeProvider',
-    function($routeProvider) {
-      $routeProvider
-        .when('/sign_up', {
-          templateUrl: '../assets/sign_up.html',
-          controller: 'signUpCtrl'
-        })
-        .when('/sign_in', {
-          templateUrl: '../assets/sign_in.html',
-          controller: 'signInCtrl'
-        })
-        .when('/portfolio', {
-          templateUrl: '../assets/portfolio.html',
-          controller: 'portfolioCtrl'
-        })
-        .when('/edit/password', {
-          templateUrl: '../assets/change_password.html',
-          controller: 'changePwdCtrl'
-        })
-        .otherwise({
-        	templateUrl: '../assets/welcome.html',
-        	controller: 'welCtrl'
-        })
-    }
-  ]);
-  
-
-
-Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout, showErrorsConfig) {
+/*Blog.directive('showErrors', function ($timeout, showErrorsConfig) {
       var getShowSuccess, linkFn;
       
       getShowSuccess = function (options) {
@@ -64,7 +28,7 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
           return toggleClasses(formCtrl[inputName].$invalid);
         });
 
-        /*scope.$watch(function () {
+        scope.$watch(function () {
           return formCtrl[inputName] && formCtrl[inputName].$invalid;
         }, function (invalid) {
           if (!blurred) {
@@ -72,15 +36,9 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
           }
           return toggleClasses(invalid);
         });
-*/
+
         scope.$on('show-errors-check-validity', function () {
-            if (!angular.isUndefined(scope.err)) {
-                if (inputName == 'email' && !angular.isUndefined(scope.err.email)) return toggleClasses(true);
-                if (inputName == 'password' && !angular.isUndefined(scope.err.password)) return toggleClasses(true);
-                if (inputName == 'password_confirmation' && !angular.isUndefined(scope.err.password_confirmation)) return toggleClasses(true);
-            }
-                
-            return toggleClasses(formCtrl[inputName].$invalid);
+          return toggleClasses(formCtrl[inputName].$invalid);
         });
 
         scope.$on('show-errors-reset', function () {
@@ -110,9 +68,9 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
         }
       };
     }
-  ]);
+  );*/
   
-  Blog.provider('showErrorsConfig', function () {
+ /* Blog.provider('showErrorsConfig', function () {
     var _showSuccess;
     _showSuccess = false;
     this.showSuccess = function (showSuccess) {
@@ -121,5 +79,63 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
     this.$get = function () {
       return { showSuccess: _showSuccess };
     };
-  });
+  });*/
 
+
+Blog.controller('signUpCtrl', ['Auth', '$scope', '$location', '$rootScope',
+	function(Auth, $scope, $location, $rootScope) {
+		  
+		/*$scope.reset = function() {
+			$scope.$broadcast('show-errors-reset');
+			$scope.registerData = { 
+				email: '',
+			    password: '',
+			    password_confirmation: ''
+			};
+		}*/
+
+		$scope.registerData = {
+		    email: '',
+		    password: '',
+		    password_confirmation: ''
+		};
+		
+
+		$scope.signUp = function() {
+			if ($scope.registerData.password != $scope.registerData.password_confirmation) {
+				$scope.err = {
+					password_confirmation: ["doesn't match Password"]
+				};
+				
+				$scope.registerForm.$invalid = true;
+			}
+
+			$scope.$broadcast('show-errors-check-validity');
+			if ($scope.registerForm.$invalid)  return; 
+
+			var config = {
+			    headers: {
+			        'X-HTTP-Method-Override': 'POST'
+			    }
+			};
+			Auth.register($scope.registerData, config).then(function(registeredUser) {
+			    console.log(registeredUser); // => {id: 1, ect: '...'}
+			    $rootScope.currentUser = registeredUser;
+			    $location = "/sign_in";
+			    //$rootScope.notifyMsg = "you have to confirm your account by email";
+			}, function(error) {
+			    // Registration failed...
+			    console.log(error);
+			    $scope.err = error.data.errors;
+			    $scope.$broadcast('show-errors-check-validity');
+			});
+
+			//$scope.reset();
+			
+		}
+
+		$scope.$on('devise:new-registration', function(event, user) {
+		    // ...
+		});
+	}
+	]);

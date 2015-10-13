@@ -1,4 +1,3 @@
-
 (function(angular) {
     'use strict';
     var devise = angular.module('Devise', []);
@@ -44,7 +43,8 @@
     var paths = {
         login: '/users/sign_in.json',
         logout: '/users/sign_out.json',
-        register: '/users.json'
+        register: '/users.json',
+        update: '/users.json'
     };
 
     /**
@@ -53,7 +53,8 @@
     var methods = {
         login: 'POST',
         logout: 'DELETE',
-        register: 'POST'
+        register: 'POST',
+        update: 'PUT'
     };
 
     /**
@@ -273,6 +274,17 @@
                     .then(broadcast('new-registration'));
             },
 
+            /**
+             * Update
+            */
+            update: function(creds, config) {
+                creds = creds || {};
+                return $http(httpConfig('register', creds, config))
+                    .then(service.parse)
+                    .then(save)
+                    .then(broadcast('update-info'));
+            },
+            
             /**
              * A helper function that will return a promise with the currentUser.
              * Three different outcomes can happen:

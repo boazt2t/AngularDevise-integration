@@ -1,4 +1,4 @@
-Blog.controller('welCtrl', function(Auth, $scope) {
+Blog.controller('welCtrl', ['Auth', '$scope', function(Auth, $scope) {
         // Use your configured Auth service.
         // $scope.value = "Bill";
-});
+}]);
