@@ -2,7 +2,7 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope', 'fla
 	function(Auth, $scope, $location, $rootScope, flash) {
 
         $rootScope.flash = flash;
-
+        $scope.notifyMsg = "";
         // Use your configured Auth service.
         $scope.loginData = {
             email: '',
@@ -30,6 +30,7 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope', 'fla
 	            // Authentication failed...
             console.log(error);
             $scope.err = error.data.errors;
+            $scope.notifyMsg = error.data.error;
             $scope.$broadcast('show-errors-check-validity');
 	        });
         }

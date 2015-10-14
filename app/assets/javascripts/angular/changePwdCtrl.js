@@ -21,8 +21,9 @@ Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope', '
                 };
                 
                 $scope.changePwdForm.$invalid = true;
-            }
+            } 
 
+            //debugger;
             $scope.$broadcast('show-errors-check-validity');
             if ($scope.changePwdForm.$invalid)  return; 
 
@@ -40,6 +41,7 @@ Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope', '
                 console.log(error);
                 $scope.err = error.data.errors;
                 $scope.$broadcast('show-errors-check-validity');
+                return ;
             });
         }
 

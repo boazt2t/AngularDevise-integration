@@ -51,15 +51,14 @@ Blog.factory("flash", ['$rootScope', '$routeParams', '$location', '$routeParams'
 
   $rootScope.$on("$locationChangeSuccess", function() {
     //debugger;
-    console.log("location:"  + beforePath);
+    //console.log("location:"  + beforePath);
     if (beforePath != $location.path()) {
       currentMessage = queue.shift() || ""; 
 
     }
     beforePath = $location.path();
-
     
-    console.log("location:"  + $location.path());
+    //console.log("location:"  + $location.path());
   });
 
   return {
@@ -101,18 +100,21 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
 
         inputNgEl.bind('blur', function () {
           blurred = true;
+          //console.log('blured')
           return toggleClasses(formCtrl[inputName].$invalid);
         });
 
-        /*scope.$watch(function () {
+        scope.$watch(function () {
           return formCtrl[inputName] && formCtrl[inputName].$invalid;
         }, function (invalid) {
+          //console.log("watchesss");
           if (!blurred) {
             return;
           }
+          
           return toggleClasses(invalid);
         });
-*/
+
         scope.$on('show-errors-check-validity', function () {
             if (!angular.isUndefined(scope.err)) {
                 if (inputName == 'email' && !angular.isUndefined(scope.err.email)) return toggleClasses(true);
