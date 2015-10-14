@@ -1,20 +1,19 @@
-Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope',
-	function(Auth, $scope, $location, $rootScope) {
-        // Use your configured Auth service.
+Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope', 'flash',
+	function(Auth, $scope, $location, $rootScope, flash) {
 
-        $scope.changePwdData = angular.copy($rootScope.currentUser);
+        $rootScope.flash = flash;
+        if($rootScope.currentUser) {
+            $scope.changePwdData = angular.copy($rootScope.currentUser);
+        } else {
+            Auth.currentUser().then(function(user) {
+                console.log(user); // => {id: 1, ect: '...'}
+                $rootScope.currentUser = user;
+                $scope.changePwdData = angular.copy(user);
+            }, function(error) {
+                $rootScope.currentUser = null;
+            });
+        }
         
-        /*$scope.changePwdData.password = '';
-        $scope.changePwdData.password_confirmation = '';
-        $scope.changePwdData.current_password = '';
-*/
-
-        var config = {
-            headers: {
-                'X-HTTP-Method-Override': 'PUT'
-            }
-        };
-
         $scope.changePwd = function() {
             if ($scope.changePwdData.password != $scope.changePwdData.password_confirmation) {
                 $scope.err = {
@@ -35,27 +34,20 @@ Blog.controller('changePwdCtrl', ['Auth', '$scope', '$location', '$rootScope',
 
             
             Auth.update($scope.changePwdData, config).then(function(updatedUser) {
-                //console.log(updatedUser); // => {id: 1, ect: '...'}
-                //$rootScope.currentUser = updatedUser;
-                
+                flash.setMessage("Successfully changed your password");
                 $location.path("/portfolio");
-                $rootScope.notifyMsg = "Successfully changed your password";
-                //$rootScope.notifyMsg = "changed your password successfully";
             }, function(error) {
-                // Registration failed...
                 console.log(error);
                 $scope.err = error.data.errors;
                 $scope.$broadcast('show-errors-check-validity');
-                
             });
-
-            /*Auth.currentUser().then(function(user) {
-                // User was logged in, or Devise returned
-                // previously authenticated session.
-                console.log(user); // => {id: 1, ect: '...'}
-            }, function(error) {
-                // unauthenticated error
-            });*/
         }
+
+        Auth.currentUser().then(function(user) {
+            $rootScope.currentUser = user;
+        }, function(error) {
+            // unauthenticated error
+            $rootScope.currentUser = null;
+        });
     }
 ]);

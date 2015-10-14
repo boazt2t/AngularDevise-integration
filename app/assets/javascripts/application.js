@@ -24,3 +24,4 @@
 //= require angular/portfolioCtrl
 //= require angular/welCtrl
 //= require angular/changePwdCtrl
+//= require angular/changeAccountCtrl

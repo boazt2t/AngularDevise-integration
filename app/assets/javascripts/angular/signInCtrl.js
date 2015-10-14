@@ -1,5 +1,7 @@
-Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
-	function(Auth, $scope, $location, $rootScope) {
+Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope', 'flash',
+	function(Auth, $scope, $location, $rootScope, flash) {
+
+        $rootScope.flash = flash;
 
         // Use your configured Auth service.
         $scope.loginData = {
@@ -19,12 +21,11 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
           if ($scope.loginForm.$invalid)  return; 
 
 	        Auth.login($scope.loginData, config).then(function(user) {
-	            //console.log(user); // => {id: 1, ect: '...'}
-	            $location.path("/portfolio");
+	            
               $rootScope.currentUser = user;
-              console.log($rootScope.currentUser);
-              $rootScope.notifyMsg = "Successfully signed in user";
-	            //alert("Successfully signed in user");
+              flash.setMessage("Successfully signed in user");
+
+	            $location.path("/portfolio");
 	        }, function(error) {
 	            // Authentication failed...
             console.log(error);
@@ -41,6 +42,14 @@ Blog.controller('signInCtrl', ['Auth', '$scope', '$location', '$rootScope',
         $scope.$on('devise:new-session', function(event, currentUser) {
             // user logged in by Auth.login({...})
         });
+
+        /*Auth.currentUser().then(function(user) {
+            console.log(user); // => {id: 1, ect: '...'}
+            $rootScope.currentUser = user;
+        }, function(error) {
+            // unauthenticated error
+            $rootScope.currentUser = null;
+        });*/
 	}
 ]);
 

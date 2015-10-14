@@ -4,6 +4,7 @@ Blog = angular.module('myModule', ['ngRoute', 'Devise']);
 Blog.run(['$rootScope', function($rootScope){
     $rootScope.currentUser = null;
     $rootScope.notifyMsg = null;
+    $rootScope.flash = "";
 }]);
 
 Blog.config(['$routeProvider',
@@ -36,7 +37,42 @@ Blog.config(['$routeProvider',
     }
   ]);
   
+Blog.factory("flash", ['$rootScope', '$routeParams', '$location', '$routeParams', 
+  function($rootScope, $routeParams, $location, $routeParams) {
 
+  var queue = [];
+  var currentMessage = "";
+  var beforePath = null;
+
+  $rootScope.$on("$routeChangeSuccess", function(event) {
+    
+//    console.log("currentMessage: " + currentMessage);
+  });
+
+  $rootScope.$on("$locationChangeSuccess", function() {
+    //debugger;
+    console.log("location:"  + beforePath);
+    if (beforePath != $location.path()) {
+      currentMessage = queue.shift() || ""; 
+
+    }
+    beforePath = $location.path();
+
+    
+    console.log("location:"  + $location.path());
+  });
+
+  return {
+    setMessage: function(message) {
+      //debugger;
+      queue.push(message);
+    },
+    getMessage: function() {
+      return currentMessage;
+    }
+  };
+}
+]);
 
 Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout, showErrorsConfig) {
       var getShowSuccess, linkFn;
