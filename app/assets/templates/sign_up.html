@@ -2,8 +2,32 @@
 
 <form name="registerForm" class="form-horizontal" ng-submit="signUp()" novalidate>
   <div class="form-group"  show-errors='{showSuccess: true}'>
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-10">
+    <label for="inputFirstName" class="col-sm-3 control-label">First Name*</label>
+    <div class="col-sm-9">
+      <input type="text" name="first_name" class="form-control" id="inputFirstName" placeholder="First Name" required ng-model="registerData.first_name">
+      <p class="help-block" ng-if="registerForm.first_name.$error.required">required</p>
+      <p class="help-block" ng-if="err.first_name.length">{{err.first_name[0]}}</p>
+    </div>
+  </div>
+  <div class="form-group"  show-errors='{showSuccess: true}'>
+    <label for="inputlastName" class="col-sm-3 control-label">Last Name*</label>
+    <div class="col-sm-9">
+      <input type="text" name="last_name" class="form-control" id="inputlastName" placeholder="Last Name" required ng-model="registerData.last_name">
+      <p class="help-block" ng-if="registerForm.last_name.$error.required">required</p>
+      <p class="help-block" ng-if="err.last_name.length">{{err.last_name[0]}}</p>
+    </div>
+  </div>
+  <div class="form-group"  show-errors='{showSuccess: true}'>
+    <label for="inputPhoneNumber" class="col-sm-3 control-label">Phone Number*</label>
+    <div class="col-sm-9">
+      <input type="text" name="phone_number" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" required ng-model="registerData.phone_number">
+      <p class="help-block" ng-if="registerForm.phone_number.$error.required">required</p>
+      <p class="help-block" ng-if="err.phone_number.length">{{err.phone_number[0]}}</p>
+    </div>
+  </div>
+  <div class="form-group"  show-errors='{showSuccess: true}'>
+    <label for="inputEmail3" class="col-sm-3 control-label">Email*</label>
+    <div class="col-sm-9">
       <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="registerData.email">
       <p class="help-block" ng-if="registerForm.email.$error.required">The user's email is required</p>
       <p class="help-block" ng-if="registerForm.email.$error.email">The email address is invalid</p>
@@ -11,16 +35,16 @@
     </div>
   </div>
   <div class="form-group"  show-errors='{showSuccess: true}'>
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
+    <label for="inputPassword3" class="col-sm-3 control-label">Password*</label>
+    <div class="col-sm-9">
       <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" required ng-model="registerData.password">
       <p class="help-block" ng-if="registerForm.password.$error.required">required</p>
       <p class="help-block" ng-if="err.password.length">{{err.password[0]}}</p>
     </div>
   </div>
   <div class="form-group"  show-errors='{showSuccess: true}'>
-    <label for="inputPasswordCon3" class="col-sm-2 control-label">Confirm Password</label>
-    <div class="col-sm-10">
+    <label for="inputPasswordCon3" class="col-sm-3 control-label">Confirm Password*</label>
+    <div class="col-sm-9">
       <input type="password" name="password_confirmation" class="form-control" id="inputPasswordCon3" placeholder="Confirm Password" required ng-model="registerData.password_confirmation">
       <p class="help-block" ng-if="registerForm.password_confirmation.$error.required">required</p>
       <p class="help-block" ng-if="err.password_confirmation.length">{{err.password_confirmation[0]}}</p>
@@ -28,14 +52,14 @@
   </div>
   
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-2 col-sm-9">
       <button type="submit" class="btn btn-default">Sign Up</button>
       <!-- <button class="btn btn-link" ng-click="reset()">Reset</button> -->
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-2 col-sm-9">
       <a href="#/sign_in">Sign In</a>
     </div>
   </div>

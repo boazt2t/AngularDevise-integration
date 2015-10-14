@@ -121,6 +121,9 @@ Blog.directive('showErrors', ['$timeout', 'showErrorsConfig', function ($timeout
                 if (inputName == 'password' && !angular.isUndefined(scope.err.password)) return toggleClasses(true);
                 if (inputName == 'password_confirmation' && !angular.isUndefined(scope.err.password_confirmation)) return toggleClasses(true);
                 if (inputName == 'current_password' && !angular.isUndefined(scope.err.current_password)) return toggleClasses(true);
+                if (inputName == 'first_name' && !angular.isUndefined(scope.err.first_name)) return toggleClasses(true);
+                if (inputName == 'last_name' && !angular.isUndefined(scope.err.last_name)) return toggleClasses(true);
+                if (inputName == 'phone_number' && !angular.isUndefined(scope.err.phone_number)) return toggleClasses(true);
             }
                 
             return toggleClasses(formCtrl[inputName].$invalid);

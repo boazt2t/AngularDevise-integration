@@ -1,6 +1,23 @@
-<h2 class="text-center">Welcome {{currentUser.first_name}}</h2>
+<h2 class="text-center">Welcome {{currentUser.email}}</h2>
 
-<p class="text-center"><a ng-click="signOut()">Sign Out</a></p>
-<p calss="text-center"><a href="#/edit/password">Change Password</a></p>
-<p calss="text-center"><a href="#/edit/account">Change Account</a></p>
+<br />
+<div class="row">
+	<div class="col-sm-offset-4">
+		<p>your email: <em>{{currentUser.email}}</em></p>	
+		<p>your first_name: <em>{{currentUser.first_name}}</em></p>	
+		<p>your last_name: <em>{{currentUser.last_name}}</em></p>	
+		<p>your phone_number: <em>{{currentUser.phone_number}}</em></p>	
+		
+	</div>
+</div>
+
+<br />
+<div class="row">
+	<div class="col-sm-offset-4">
+		<a ng-click="signOut()">Sign Out</a> | 
+		<a href="#/edit/password">Change Password</a> | 
+		<a href="#/edit/account">Change Account</a> | 
+	</div>
+</div>
+
 
