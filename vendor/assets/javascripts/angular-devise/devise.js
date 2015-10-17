@@ -44,7 +44,9 @@
         login: '/users/sign_in.json',
         logout: '/users/sign_out.json',
         register: '/users.json',
-        update: '/users.json'
+        update: '/users.json',
+        newpassword: '/users/password.json',
+        editpassword: '/users/password.json'
     };
 
     /**
@@ -54,7 +56,9 @@
         login: 'POST',
         logout: 'DELETE',
         register: 'POST',
-        update: 'PUT'
+        update: 'PUT',
+        newpassword: 'POST',
+        editpassword: 'PUT'
     };
 
     /**
@@ -285,6 +289,28 @@
                     .then(broadcast('update-info'));
             },
             
+            /**
+             * New Password
+            */
+            newpassword: function(creds, config) {
+                creds = creds || {};
+                return $http(httpConfig('newpassword', creds, config))
+                    .then(service.parse)
+                    .then(save)
+                    .then(broadcast('newpassword-info'));
+            },
+
+            /**
+             * Edit Password
+            */
+            editpassword: function(creds, config) {
+                creds = creds || {};
+                return $http(httpConfig('editpassword', creds, config))
+                    .then(service.parse)
+                    .then(save)
+                    .then(broadcast('editpassword-info'));
+            },
+
             /**
              * A helper function that will return a promise with the currentUser.
              * Three different outcomes can happen:

@@ -25,3 +25,5 @@
 //= require angular/welCtrl
 //= require angular/changePwdCtrl
 //= require angular/changeAccountCtrl
+//= require angular/newPwdCtrl
+//= require angular/editPwdCtrl

@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     confirmations: "users/confirmations"
+    # , passwords: "users/passwords"
   }
+  # ,:skip => [:password]
+  #   as :user do
+  #     get 'password/edit' => 'devise/passwords#edit', :as => :edit_user_password
+  #   end
+
+  # devise_scope :user do
+  #   get "/password/edit" => "devise/passwords#edit", :as => :edit_user_password
+  # end
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,9 +1,9 @@
 Blog.controller('newPwdCtrl', ['Auth', '$scope', '$location', '$rootScope', 'flash',
 	function(Auth, $scope, $location, $rootScope, flash) {
 
-        /*$rootScope.flash = flash;
-        if($rootScope.currentUser) {
-            $scope.changePwdData = angular.copy($rootScope.currentUser);
+        $rootScope.flash = flash;
+/*        if($rootScope.currentUser) {
+            $scope.newPwdData = angular.copy($rootScope.currentUser);
         } else {
             Auth.currentUser().then(function(user) {
                 console.log(user); // => {id: 1, ect: '...'}
@@ -12,31 +12,22 @@ Blog.controller('newPwdCtrl', ['Auth', '$scope', '$location', '$rootScope', 'fla
             }, function(error) {
                 $rootScope.currentUser = null;
             });
-        }
+        }*/
         
-        $scope.changePwd = function() {
-            if ($scope.changePwdData.password != $scope.changePwdData.password_confirmation) {
-                $scope.err = {
-                    password_confirmation: ["doesn't match Password"]
-                };
-                
-                $scope.changePwdForm.$invalid = true;
-            } 
-
-            //debugger;
+        $scope.newPwd = function() {
             $scope.$broadcast('show-errors-check-validity');
-            if ($scope.changePwdForm.$invalid)  return; 
+            if ($scope.newPwdForm.$invalid)  return; 
 
             var config = {
                 headers: {
-                    'X-HTTP-Method-Override': 'PUT'
+                    'X-HTTP-Method-Override': 'POST'
                 }
             };
 
             
-            Auth.update($scope.changePwdData, config).then(function(updatedUser) {
-                flash.setMessage("Successfully changed your password");
-                $location.path("/portfolio");
+            Auth.newpassword($scope.newPwdData, config).then(function(User) {
+                flash.setMessage("You will receive an email with instructions on how to reset your password in a few minutes.");
+                $location.path("/sign_in");
             }, function(error) {
                 console.log(error);
                 $scope.err = error.data.errors;
@@ -45,7 +36,7 @@ Blog.controller('newPwdCtrl', ['Auth', '$scope', '$location', '$rootScope', 'fla
             });
         }
 
-        Auth.currentUser().then(function(user) {
+       /* Auth.currentUser().then(function(user) {
             $rootScope.currentUser = user;
         }, function(error) {
             // unauthenticated error
