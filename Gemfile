@@ -5,6 +5,7 @@ gem 'angularjs-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'angular_rails_csrf'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
